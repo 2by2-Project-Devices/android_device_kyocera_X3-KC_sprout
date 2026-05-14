@@ -114,6 +114,12 @@ on fs
 on post-fs
     write /dev/ipa 1
 
+    # Start services for bootanim
+    start surfaceflinger
+    start bootanim
+    start vendor.configstore-hal
+    start vendor.qti.hardware.display.allocator
+
 on post-fs-data
     mkdir /data/vendor/misc 01771 system system
 
