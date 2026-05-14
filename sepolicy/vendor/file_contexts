@@ -8,6 +8,10 @@
 /dev/socket/secd_devsec_sock                              u:object_r:secd_devsec_socket:s0
 /dev/socket/tad                                           u:object_r:tad_socket:s0
 
+# Partitions
+/dev/block/platform/soc/c0c4000\.sdhci/by-name/system     u:object_r:system_block_device:s0
+/dev/block/platform/soc/c0c4000\.sdhci/by-name/vendor     u:object_r:system_block_device:s0
+
 # Data files
 /data/vendor/location/xtra/socket_hal_xtra    u:object_r:location_socket:s0
 /data/vendor/location/xtra/socket_xtra        u:object_r:location_socket:s0
