@@ -14,9 +14,9 @@
 # limitations under the License.
 #
 
-BOARD_VENDOR := sony
+BOARD_VENDOR := kyocera
 
-VENDOR_PATH := device/sony/nile-common
+VENDOR_PATH := device/kyocera/X3-KC_sprout
 
 # Architecture
 TARGET_ARCH := arm64
@@ -36,15 +36,15 @@ TARGET_BOOTLOADER_BOARD_NAME := sdm660
 TARGET_NO_BOOTLOADER := true
 
 # Kernel
-BOARD_KERNEL_BASE := 0x80000000
+BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 service_locator.enable=1 androidboot.configfs=true androidboot.usbcontroller=a800000.dwc3 loop.max_part=7
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
-BOARD_RAMDISK_OFFSET := 0x02000000
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_NO_GCC := true
-TARGET_KERNEL_SOURCE := kernel/sony/sdm660
+TARGET_KERNEL_SOURCE := kernel/kyocera/sdm660
+TARGET_KERNEL_CONFIG := vendor/sdm660-perf_defconfig vendor/kyocera/X3-KC_sprout.config
 
 # Platform
 TARGET_BOARD_PLATFORM := sdm660
@@ -151,7 +151,9 @@ BOARD_HAVE_QCOM_FM := true
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     $(VENDOR_PATH)/framework_compatibility_matrix.xml \
-    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml
+    hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
+    hardware/qcom-caf/common/vendor_framework_compatibility_matrix_legacy.xml \
+    vendor/lineage/config/device_framework_matrix.xml
 DEVICE_MANIFEST_FILE := $(VENDOR_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(VENDOR_PATH)/compatibility_matrix.xml
 
@@ -163,9 +165,9 @@ BOARD_USES_METADATA_PARTITION := true
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3036676096
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2684354560
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 21474820096
-BOARD_VENDORIMAGE_PARTITION_SIZE := 891289600
+BOARD_VENDORIMAGE_PARTITION_SIZE := 1073741824
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
 TARGET_COPY_OUT_VENDOR := vendor
@@ -221,4 +223,4 @@ WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit from the proprietary version
--include vendor/sony/nile-common/BoardConfigVendor.mk
+-include vendor/kyocera/X3-KC_sprout/BoardConfigVendor.mk

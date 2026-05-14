@@ -1,4 +1,4 @@
-<manifest version="1.0" type="device" target-level="7">
+<manifest version="1.0" type="device" target-level="5">
     <hal format="hidl">
         <name>android.hardware.audio</name>
         <transport>hwbinder</transport>
@@ -58,22 +58,20 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.gnss</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IGnss</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.1::IGnss/default</fqname>
-        <fqname>@2.1::IGnss/default</fqname>
-    </hal>
-    <hal format="hidl">
         <name>android.hardware.graphics.composer</name>
         <transport>hwbinder</transport>
         <version>2.1</version>
         <interface>
             <name>IComposer</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+    <name>android.hardware.keymaster</name>
+        <transport>hwbinder</transport>
+        <version>3.0</version>
+        <interface>
+            <name>IKeymasterDevice</name>
             <instance>default</instance>
         </interface>
     </hal>

@@ -89,7 +89,7 @@
 #define MAX_AF_STATS_DATA_SIZE  1000
 #define MAX_ASD_STATS_DATA_SIZE 1000
 
-#ifdef TARGET_NILE
+#ifdef TARGET_SDM660
 #define MAX_CAPTURE_BATCH_NUM 32
 #else
 #define MAX_CAPTURE_BATCH_NUM 120
@@ -210,7 +210,7 @@
 #define MAX_SECURE_BUFFERS  3
 
 #define CAM_GRALLOC_USAGE_PRIVATE_HEIF (UINT32_C(1) << 27)
-#ifdef TARGET_NILE
+#ifdef TARGET_SDM660
 #define IS_USAGE_HEIF(usage) (false)
 #else
 #define IS_USAGE_HEIF(usage) (((usage) & (CAM_GRALLOC_USAGE_PRIVATE_HEIF)) \
@@ -466,7 +466,7 @@ typedef enum {
 typedef enum {
     CAM_FORMAT_SUBTYPE_HDR_STATS,
     CAM_FORMAT_SUBTYPE_PDAF_STATS,
-#ifndef TARGET_NILE
+#ifndef TARGET_SDM660
     CAM_FORMAT_SUBTYPE_FLICKER_STATS,
 #endif
     CAM_FORMAT_SUBTYPE_MAX
@@ -621,7 +621,7 @@ typedef struct {
     uint32_t min_stride;
     uint32_t min_scanline;
     cam_offset_info_t offset_info;
-#ifndef TARGET_NILE
+#ifndef TARGET_SDM660
     uint32_t usage;
 #endif
 } cam_padding_info_t;
@@ -1013,7 +1013,7 @@ typedef enum {
     CAM_SENSOR_HDR_IN_SENSOR = 1,
     CAM_SENSOR_HDR_ZIGZAG,
     CAM_SENSOR_HDR_STAGGERED,
-#ifndef TARGET_NILE
+#ifndef TARGET_SDM660
     CAM_SENSOR_3EXP_HDR_IN_SENSOR,
 #endif
     CAM_SENSOR_HDR_MAX,
@@ -1078,11 +1078,11 @@ typedef enum {
     IS_TYPE_GA_DIS,
     IS_TYPE_EIS_2_0,
     IS_TYPE_EIS_3_0,
-#ifndef TARGET_NILE
+#ifndef TARGET_SDM660
     IS_TYPE_VENDOR_EIS,
 #endif
     IS_TYPE_MAX,
-#ifdef TARGET_NILE
+#ifdef TARGET_SDM660
     IS_TYPE_VENDOR_EIS,
 #endif
 
@@ -1742,7 +1742,7 @@ typedef struct {
     int32_t est_snap_iso_value;
     uint32_t est_snap_luma;
     uint32_t est_snap_target;
-#if defined(TARGET_NILE)
+#if defined(TARGET_SDM660)
     uint8_t pad[4];
 #elif defined(TARGET_GANGES)
     uint8_t pad[8];
@@ -3229,7 +3229,7 @@ typedef enum {
 typedef struct {
     int32_t width;
     int32_t height;
-#ifndef TARGET_NILE
+#ifndef TARGET_SDM660
     int32_t opClock;
 #endif
 } cam_sensor_config_t;

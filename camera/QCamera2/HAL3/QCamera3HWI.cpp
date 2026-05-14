@@ -601,7 +601,7 @@ QCamera3HardwareInterface::QCamera3HardwareInterface(uint32_t cameraId,
     if (gCamCapability[cameraId]->is_quadracfa_sensor) {
         m_bQuadraCfaSensor = true;
 
-#ifndef TARGET_NILE
+#ifndef TARGET_SDM660
         if (gCamCapability[cameraId]->is_quadracfa_insensor) {
             m_bInSensorQCFA = true;
         }
@@ -2895,7 +2895,7 @@ int QCamera3HardwareInterface::configureStreamsPerfLocked(
                 {
                     padding_info.width_padding = CAM_PAD_TO_512;
                     padding_info.height_padding = CAM_PAD_TO_512;
-#ifndef TARGET_NILE
+#ifndef TARGET_SDM660
                     padding_info.usage = newStream->usage;
 #endif
                     mStreamConfigInfo[index].type[stream_index] = CAM_STREAM_TYPE_CALLBACK;
@@ -11640,7 +11640,7 @@ int QCamera3HardwareInterface::initCapabilities(uint32_t cameraId)
     }
 
     if (gCamCapability[cameraId]->is_remosaic_lib_present ||
-#ifdef TARGET_NILE
+#ifdef TARGET_SDM660
             false) {
 #else
             gCamCapability[cameraId]->is_quadracfa_insensor) {
@@ -12779,7 +12779,7 @@ int QCamera3HardwareInterface::initStaticMetadata(uint32_t cameraId)
         available_capabilities.add(ANDROID_REQUEST_AVAILABLE_CAPABILITIES_DEPTH_OUTPUT);
     }
 
-#ifdef TARGET_NILE
+#ifdef TARGET_SDM660
     if (cameraId > 0 && CAM_SENSOR_YUV != gCamCapability[cameraId]->sensor_type.sens_type) {
 #else
     if (CAM_SENSOR_YUV != gCamCapability[cameraId]->sensor_type.sens_type) {

@@ -18,7 +18,7 @@
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product, vendor/sony/nile-common/nile-common-vendor.mk)
+$(call inherit-product, vendor/kyocera/X3-KC_sprout/X3-KC_sprout-vendor.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
@@ -143,23 +143,18 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES_DEBUG += \
     bootctl
 
-$(call soong_config_set_bool,QTI_GPT_UTILS,USE_BSG_FRAMEWORK,false)
+$(call soong_config_set,QTI_GPT_UTILS,USE_BSG_FRAMEWORK,false)
 
 # Camera
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider-service_32.lineage \
     camera.sdm660:32
 
-ifneq ($(filter %_kirin %_mermaid,$(TARGET_PRODUCT)),)
-$(call soong_config_set,qcom_camera_hal,target,ganges)
-else ifneq ($(filter %_discovery %_pioneer %_voyager,$(TARGET_PRODUCT)),)
-$(call soong_config_set,qcom_camera_hal,target,nile)
-endif
+$(call soong_config_set,qcom_camera_hal,target,sdm660)
 
 # Common init scripts
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    fstab.qcom.ramdisk \
     init.qcom.cei.sh \
     init.qcom.devstart.sh \
     init.qcom.post_boot.sh \
@@ -170,6 +165,9 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     init.qcom.usb.sh \
     ueventd.qcom.rc
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/init/fstab.qcom:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.qcom
 
 # Configstore
 PRODUCT_PACKAGES += \
@@ -251,7 +249,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     macaddrsetup
 
-$(call soong_config_set,sony_macaddrsetup,wifi_driver,qca_cld3)
+$(call soong_config_set,kyocera_macaddrsetup,wifi_driver,qca_cld3)
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -264,18 +262,8 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml
 
-# Modem switcher
-ifneq ($(filter %_kirin %_mermaid,$(TARGET_PRODUCT)),)
-PRODUCT_PACKAGES += \
-    ModemConfig
-
-PRODUCT_COPY_FILES += \
-    $(shell find $(LOCAL_PATH)/modem-config -type f -printf '%p:$(TARGET_COPY_OUT_VENDOR)/modemconf/%P\n')
-endif
-
 # NFC
 PRODUCT_PACKAGES += \
-    android.hardware.nfc-service.nxp \
     com.android.nfc_extras \
     Tag
 
@@ -298,13 +286,8 @@ PRODUCT_PACKAGES += \
     android.hardware.power-service.lineage-libperfmgr \
     libqti-perfd-client
 
-ifneq ($(filter %_mermaid,$(TARGET_PRODUCT)),)
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/powerhint-sdm636.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
-else
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint-sdm630.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
-endif
 
 # QCOM
 PRODUCT_COPY_FILES += \
@@ -345,7 +328,7 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/pixel \
     hardware/lineage/interfaces/power-libperfmgr \
     hardware/qcom-caf/common/libqti-perfd-client \
-    hardware/sony
+    hardware/kyocera
 
 # Storage
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
@@ -387,7 +370,7 @@ PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/usb/etc
 
 # Vendor init
-$(call soong_config_set,libinit,vendor_init_lib,//$(LOCAL_PATH):libinit.sony_nile)
+$(call soong_config_set,libinit,vendor_init_lib,//$(LOCAL_PATH):libinit.kyocera_sdm660)
 
 # Vibrator
 PRODUCT_PACKAGES += \

@@ -15,7 +15,7 @@
 //
 
 cc_library_static {
-    name: "libinit.sony_nile",
+    name: "libinit.kyocera_sdm660",
     recovery_available: true,
     srcs: ["init_sdm660.cpp"],
     include_dirs: [
@@ -28,7 +28,6 @@ prebuilt_etc {
     name: "fstab.qcom",
     src: "fstab.qcom",
     soc_specific: true,
-    ramdisk_available: true,
 }
 
 prebuilt_etc {

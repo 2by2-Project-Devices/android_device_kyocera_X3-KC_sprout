@@ -7678,7 +7678,7 @@ int32_t QCameraParameters::setSensorSnapshotHDR(const char *snapshotHDR)
                 value = CAM_SENSOR_HDR_ZIGZAG;
                 LOGH("Overriding to ZZ HDR Mode");
             }else if (exp3_hdr_enable && (value != CAM_SENSOR_HDR_OFF)) {
-#ifndef TARGET_NILE
+#ifndef TARGET_SDM660
                 value = CAM_SENSOR_3EXP_HDR_IN_SENSOR;
                 LOGH("Overriding to 3EXP HDR IN SENSOR Mode");
 #endif

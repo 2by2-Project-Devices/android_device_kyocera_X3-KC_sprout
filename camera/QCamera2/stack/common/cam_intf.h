@@ -370,7 +370,7 @@ typedef struct cam_capability{
     cam_dimension_t zzhdr_sizes_tbl[MAX_SIZES_CNT];         /* Table for ZZHDR supported sizes */
 
     uint32_t is_quadracfa_sensor;
-#ifndef TARGET_NILE
+#ifndef TARGET_SDM660
     uint32_t is_quadracfa_insensor;
 #endif
     size_t supported_quadra_cfa_dim_cnt;              /* Number of resolutions in Quadra CFA mode */
@@ -683,7 +683,7 @@ typedef struct cam_capability{
     /*Mono Stats support*/
     uint8_t is_mono_stats_suport;
     uint8_t is_depth_sensor;
-#if defined(TARGET_NILE)
+#if defined(TARGET_SDM660)
     uint8_t unk[64];
 #endif
     cam_dimension_t single_isp_max_size;
@@ -1092,7 +1092,7 @@ typedef struct {
     INCLUDE(CAM_INTF_PARM_REDEYE_REDUCTION,             int32_t,                     1);
     INCLUDE(CAM_INTF_PARM_WAVELET_DENOISE,              cam_denoise_param_t,         1);
     INCLUDE(CAM_INTF_PARM_TEMPORAL_DENOISE,             cam_denoise_param_t,         1);
-#ifdef TARGET_NILE
+#ifdef TARGET_SDM660
     INCLUDE(CAM_INTF_CEI_BS_1,                          uint8_t,                     16);
     uint8_t pad[4];
 #else
@@ -1133,7 +1133,7 @@ typedef struct {
     INCLUDE(CAM_INTF_META_RAW,                          cam_dimension_t,             1);
     INCLUDE(CAM_INTF_META_STREAM_INFO_FOR_PIC_RES,      cam_stream_size_info_t,      1);
     INCLUDE(CAM_INTF_PARM_VFE1_RESERVED_RDI,            int32_t,                     1);
-#if defined(TARGET_NILE)
+#if defined(TARGET_SDM660)
     uint8_t pad2[4];
 #elif defined(TARGET_GANGES)
     uint8_t pad2[44];
@@ -1216,7 +1216,7 @@ typedef struct {
     INCLUDE(CAM_INTF_PARAM_BOKEH_BLUR_LEVEL,            cam_rtb_blur_info_t,         1);
     INCLUDE(CAM_INTF_META_RTB_DATA,                     cam_rtb_msg_type_t,          1);
     INCLUDE(CAM_INTF_META_DC_CAPTURE,                   uint8_t,                     1);
-#if defined(TARGET_NILE)
+#if defined(TARGET_SDM660)
     uint8_t pad3[7];
     INCLUDE(CAM_INTF_CEI_BS_3,                          uint8_t,                     40);
 #endif

@@ -48,7 +48,7 @@ cc_library_shared {
         "-Wno-unused-but-set-variable",
     ] + select(soong_config_variable("qcom_camera_hal", "target"), {
         "ganges": ["-DTARGET_GANGES"],
-        "nile": ["-DTARGET_NILE"],
+        "sdm660": ["-DTARGET_SDM660"],
         default: [],
     }),
 

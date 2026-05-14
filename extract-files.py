@@ -9,6 +9,7 @@ from extract_utils.fixups_blob import (
     blob_fixups_user_type,
 )
 from extract_utils.fixups_lib import (
+    lib_fixup_remove,
     lib_fixups,
     lib_fixups_user_type,
 )
@@ -18,7 +19,7 @@ from extract_utils.main import (
 )
 
 namespace_imports = [
-    'device/sony/nile-common',
+    'device/kyocera/X3-KC_sprout',
     'hardware/qcom-caf/sdm660',
     'hardware/qcom-caf/wlan',
     'vendor/qcom/opensource/commonsys/display',
@@ -35,13 +36,12 @@ lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     (
         'com.qualcomm.qti.dpm.api@1.0',
-        'com.qualcomm.qti.imscmservice@2.0',
-        'com.qualcomm.qti.imscmservice@2.1',
-        'com.qualcomm.qti.imscmservice@2.2',
         'vendor.qti.hardware.fm@1.0',
-        'vendor.qti.imsrtpservice@2.0',
-        'vendor.qti.imsrtpservice@2.1',
     ): lib_fixup_vendor_suffix,
+    **lib_fixups,
+    (
+        'libwifi-hal-ctrl',
+    ): lib_fixup_remove,
 }
 
 blob_fixups: blob_fixups_user_type = {
@@ -85,11 +85,13 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libhidlbase_shim.so'),
     'vendor/lib64/fpc_tac.so': blob_fixup()
         .replace_needed('libprotobuf-c.so', 'libprotobuf-c-idd.so'),
+    ('vendor/etc/data/dsi_config.xml', 'vendor/etc/data/netmgr_config.xml'): blob_fixup()
+        .fix_xml(),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
-    'nile-common',
-    'sony',
+    'X3-KC_sprout',
+    'kyocera',
     blob_fixups=blob_fixups,
     lib_fixups=lib_fixups,
     namespace_imports=namespace_imports,
