@@ -53,3 +53,8 @@
 # Shell scripts
 /(vendor|system/vendor)/bin/init\.qcom\.cei\.sh         u:object_r:init-qcom-cei-sh_exec:s0
 /(vendor|system/vendor)/bin/init\.qcom\.devstart\.sh    u:object_r:init-qcom-devstart-sh_exec:s0
+
+# Root Symlinks
+/bt_firmware(/.*)?                                      u:object_r:bt_firmware_file:s0
+/firmware(/.*)?                                         u:object_r:firmware_file:s0
+/persist(/.*)?                                          u:object_r:persist_file:s0
