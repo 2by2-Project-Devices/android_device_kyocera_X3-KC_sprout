@@ -38,7 +38,7 @@
     <hal format="hidl">
         <name>android.hardware.drm</name>
         <transport>hwbinder</transport>
-        <version>1.1</version>
+        <version>1.2</version>
         <interface>
             <name>ICryptoFactory</name>
             <instance>widevine</instance>
@@ -85,7 +85,16 @@
         </interface>
     </hal>
     <hal format="hidl">
-    <name>android.hardware.keymaster</name>
+        <name>android.hardware.nfc</name>
+        <transport>hwbinder</transport>
+        <version>1.2</version>
+        <interface>
+            <name>INfc</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.keymaster</name>
         <transport>hwbinder</transport>
         <version>3.0</version>
         <interface>
@@ -170,39 +179,6 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>com.fingerprints.extension</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IFingerprintAuthenticator</name>
-            <instance>default</instance>
-        </interface>
-        <interface>
-            <name>IFingerprintCalibration</name>
-            <instance>default</instance>
-        </interface>
-        <interface>
-            <name>IFingerprintEngineering</name>
-            <instance>default</instance>
-        </interface>
-        <interface>
-            <name>IFingerprintNavigation</name>
-            <instance>default</instance>
-        </interface>
-        <interface>
-            <name>IFingerprintRecalibration</name>
-            <instance>default</instance>
-        </interface>
-        <interface>
-            <name>IFingerprintSenseTouch</name>
-            <instance>default</instance>
-        </interface>
-        <interface>
-            <name>IFingerprintSensorTest</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>com.qualcomm.qti.dpm.api</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -243,15 +219,6 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>vendor.egis.fingerprints.inline_hal.hardware.fingerprint</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>IBiometricsFingerprintEts</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>vendor.display.color</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -277,6 +244,136 @@
             <name>IDisplayPostproc</name>
             <instance>default</instance>
         </interface>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.kyocera.hardware.display</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IDisplay</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IDisplay/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.kyocera.hardware.dtvtuner</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IDtvtuner</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IDtvtuner/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.kyocera.hardware.fingerprints</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IVendorBiometricsFingerprint</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IVendorBiometricsFingerprint/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.kyocera.hardware.irda</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IIrda</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IIrda/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.kyocera.hardware.kcjprop</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IKcjprop</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IKcjprop/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.kyocera.hardware.kclight</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ILight</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::ILight/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.kyocera.hardware.nfcfelica.nfckserv</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>INfcKserv</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::INfcKserv/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.kyocera.hardware.powersupply</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IPowersupply</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IPowersupply/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.kyocera.hardware.qalog</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IQalog</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IQalog/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.kyocera.hardware.sensors</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IMotionDetectSensorExt</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>ISensorsExt</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IUnderwaterDetectSensorExt</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IMotionDetectSensorExt/default</fqname>
+        <fqname>@1.0::ISensorsExt/default</fqname>
+        <fqname>@1.0::IUnderwaterDetectSensorExt/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.kyocera.hardware.thermalmonitor</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IThermalmonitor</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IThermalmonitor/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.kyocera.hardware.touchscreen</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ITouch</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::ITouch/default</fqname>
     </hal>
     <hal format="hidl">
         <name>vendor.qti.data.factory</name>
@@ -543,116 +640,6 @@
         <interface>
             <name>IRTPService</name>
             <instance>imsrtpservice</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.semc.hardware.charger</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ICharger</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.semc.hardware.display</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IDisplay</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.semc.hardware.light</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IExtLight</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.semc.system.idd</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IIdd</name>
-            <instance>default</instance>
-            <instance>logreader</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.somc.hardware.graphics</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ISomcGfx</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.somc.hardware.miscta</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IMisctaGlobal</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.somc.hardware.modemswitcher</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IModemSwitcher</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.somc.hardware.pip</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IPip</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.somc.hardware.radio</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ISomcHook</name>
-            <instance>somchook</instance>
-            <instance>somchook2</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.somc.hardware.security.secd</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IDeviceSecurity</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.somc.hardware.superstamina</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ISuperStamina</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.somc.hardware.wifidriver</name>
-        <transport>hwbinder</transport>
-        <version>2.1</version>
-        <interface>
-            <name>ISomcWifiDriver</name>
-            <instance>default</instance>
         </interface>
     </hal>
 </manifest>
