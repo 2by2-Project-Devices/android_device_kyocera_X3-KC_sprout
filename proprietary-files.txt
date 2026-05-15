@@ -245,20 +245,24 @@ vendor/lib64/libtinyxml2_1.so|6d602dfd9df770ee6ecdbe0e9d98b8951dd8483d
 vendor/lib/hw/vulkan.adreno.so|51a2fa29d87260d90f28704f90601092644660e5
 vendor/lib64/hw/vulkan.adreno.so|be43f039293051cea09fd634ca872545e882175c
 
-# Graphics firmware - from I3113_Customized UK_1317-9617_53.1.A.5.13_R11C
-vendor/firmware/a508_zap.b00|21d74ee137e4096c2ffcd6f2545b5b2f8f384efa
-vendor/firmware/a508_zap.b01|7b19ceda6025b71e9ef732d0fe6329a2813af5e3
-vendor/firmware/a508_zap.b02|5a3d7a90e8b416d066b73d4fccbf0ec2656dbd1e
-vendor/firmware/a508_zap.elf|396ab2d576ba41ee2c727d6b99d01275579ab132
-vendor/firmware/a508_zap.mdt|3580ad3e5ef280b4bbe37f5bbfcb2cb7946e9b45
-vendor/firmware/a530_gpmu.fw2|706da8d5ee565dcf456341f805ee75a40773f65a
-vendor/firmware/a530_pfp.fw|d027c70fde64241ec13160d09ee1b6c272974a4b
-vendor/firmware/a530_pm4.fw|b1cf625b5552b99839687f479c124ac5daca2ca2
-vendor/firmware/a530v1_pfp.fw|0864291b99bed712edfcffa94be7b4595d3af306
-vendor/firmware/a530v1_pm4.fw|6a82a4fb4035fa2a933c1a26b5535d7ec7c0ac4c
-vendor/firmware/a530v2_seq.fw2|63b6d25594a5c1f4217d996a2b636e17a29fc840
-vendor/firmware/a530v3_gpmu.fw2|0a2f6f450231673d75ba39e5d28776db3becf810
-vendor/firmware/a530v3_seq.fw2|8963a53acc689725dee4b22881a4dd4b80e5def8
+# Graphics firmware
+vendor/firmware/a508_zap.b00
+vendor/firmware/a508_zap.b01
+vendor/firmware/a508_zap.b02
+vendor/firmware/a508_zap.elf
+vendor/firmware/a508_zap.mdt
+vendor/firmware/a512_zap.b00
+vendor/firmware/a512_zap.b02
+vendor/firmware/a512_zap.elf
+vendor/firmware/a530_gpmu.fw2
+vendor/firmware/a530_pfp.fw
+vendor/firmware/a530_pm4.fw
+vendor/firmware/a530v1_pfp.fw
+vendor/firmware/a530v1_pm4.fw
+vendor/firmware/a530v2_seq.fw2
+vendor/firmware/a530v3_gpmu.fw2
+vendor/firmware/a530v3_seq.fw2
+vendor/firmware/a540_gpmu.fw2
 
 # GPS
 vendor/bin/hw/android.hardware.gnss@2.0-service-qti
