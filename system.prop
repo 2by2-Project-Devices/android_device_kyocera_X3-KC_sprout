@@ -10,6 +10,7 @@ vendor.bluetooth.soc=cherokee
 ro.charger.enable_suspend=true
 
 # Dexopt
+dalvik.vm.dex2oat64.enabled=true
 pm.dexopt.shared=quicken
 
 # Display
