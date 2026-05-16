@@ -160,6 +160,7 @@ $(call soong_config_set,qcom_camera_hal,target,sdm660)
 # Common init scripts
 PRODUCT_PACKAGES += \
     fstab.qcom \
+    fstab.zram \
     init.qcom.cei.sh \
     init.qcom.devstart.sh \
     init.qcom.post_boot.sh \
