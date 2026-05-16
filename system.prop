@@ -9,6 +9,9 @@ vendor.bluetooth.soc=cherokee
 # Charger
 ro.charger.enable_suspend=true
 
+# Dexopt
+pm.dexopt.shared=quicken
+
 # Display
 ro.qualcomm.cabl=0
 
