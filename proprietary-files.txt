@@ -183,17 +183,20 @@ product/app/FeliCaLockSettingService/FeliCaLockSettingService.apk;PRESIGNED
 product/priv-app/FeliCaLock/FeliCaLock.apk;PRESIGNED
 product/priv-app/NfcSetting/NfcSetting.apk;PRESIGNED
 
-# Fingerprint
-vendor/bin/fingerprint_diag
-vendor/bin/hw/vendor.kyocera.hardware.fingerprints@1.0-service
+# Fingerprint (QFP)
+product/framework/vendor.qti.hardware.fingerprint-V1.0-java.jar
+vendor/app/QFingerprintService/QFingerprintService.apk
+vendor/bin/qfp-daemon
 vendor/etc/init/init.fingerprint.fpc1020.rc
-vendor/etc/init/vendor.kyocera.hardware.fingerprints@1.0-service.rc
-vendor/etc/permissions/android.hardware.fingerprint.xml
-vendor/etc/permissions/qti_fingerprint_interface.xml
-vendor/lib/vendor.kyocera.hardware.fingerprints@1.0.so
-vendor/lib/vendor.qti.hardware.fingerprint@1.0.so
-vendor/lib64/vendor.kyocera.hardware.fingerprints@1.0.so
+vendor/etc/permissions/qti_fingerprint_interface.xml:product/etc/permissions/qti_fingerprint_interface.xml
+vendor/lib64/libqfp-service.so
 vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so
+
+# Fingerprint (Kyocera)
+vendor/app/VendorBiometricsFingerprintService/VendorBiometricsFingerprintService.apk
+vendor/bin/hw/vendor.kyocera.hardware.fingerprints@1.0-service
+vendor/etc/init/vendor.kyocera.hardware.fingerprints@1.0-service.rc
+vendor/lib64/vendor.kyocera.hardware.fingerprints@1.0.so
 
 # FM - from HON660-T-95.00.04-(0061)
 system_ext/lib64/fm_helium.so|d13301df0e10df117d6b2d419601e96fdac14bbe

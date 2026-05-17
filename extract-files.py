@@ -87,6 +87,10 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libprotobuf-c.so', 'libprotobuf-c-idd.so'),
     ('vendor/etc/data/dsi_config.xml', 'vendor/etc/data/netmgr_config.xml'): blob_fixup()
         .fix_xml(),
+    'product/etc/permissions/qti_fingerprint_interface.xml': blob_fixup()
+        .regex_replace('/system/framework/', '/system/product/framework/'),
+    'vendor/etc/init/vendor.kyocera.hardware.fingerprints@1.0-service.rc': blob_fixup()
+        .add_line_if_missing('    interface android.hardware.biometrics.fingerprint@2.1::IBiometricsFingerprint default'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
