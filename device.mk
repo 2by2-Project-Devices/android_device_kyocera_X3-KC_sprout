@@ -159,6 +159,11 @@ PRODUCT_PACKAGES += \
 
 $(call soong_config_set,qcom_camera_hal,target,sdm660)
 
+# Cgroup and task_profiles
+PRODUCT_COPY_FILES += \
+    system/core/libprocessgroup/profiles/cgroups_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
+    system/core/libprocessgroup/profiles/task_profiles_28.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
+
 # Common init scripts
 PRODUCT_PACKAGES += \
     fstab.qcom \
