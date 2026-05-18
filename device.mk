@@ -210,6 +210,9 @@ TARGET_BOARD_FASTBOOT_INFO_FILE := $(LOCAL_PATH)/fastboot-info.txt
 PRODUCT_PACKAGES += \
     fastbootd
 
+# Felica
+-include packages/apps/FelicaService/device.mk
+
 # FM
 PRODUCT_PACKAGES += \
     FM2 \
