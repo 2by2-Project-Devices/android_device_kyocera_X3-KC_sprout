@@ -170,6 +170,19 @@ vendor/lib64/libsecureui.so|f83a88c11e35b3e373034faa44dc0ce36608a3fe
 vendor/lib64/libsecureui_svcsock.so|f3f13a8d9426359b921960167978f241367ae6ff
 vendor/lib64/libssd.so|9f00c129db72613ab46acf2627425ab99fbdfb84
 
+# Felica
+system/app/MobileFeliCaClient/MobileFeliCaClient.apk;PRESIGNED
+system/etc/felica/common.cfg
+system/etc/felica/mfm.cfg
+system/etc/felica/mfs.cfg
+system/etc/permissions/com.felicanetworks.felica.xml
+system/etc/permissions/com.felicanetworks.felicaextra.xml
+system/framework/com.felicanetworks.felica.jar
+system/framework/com.felicanetworks.felicaextra.jar
+product/app/FeliCaLockSettingService/FeliCaLockSettingService.apk;PRESIGNED
+product/priv-app/FeliCaLock/FeliCaLock.apk;PRESIGNED
+product/priv-app/NfcSetting/NfcSetting.apk;PRESIGNED
+
 # Fingerprint
 vendor/bin/fingerprint_diag
 vendor/bin/hw/vendor.kyocera.hardware.fingerprints@1.0-service
