@@ -685,3 +685,15 @@ on property:vendor.post_boot.parsed=1
     # IRQ 49: kgsl_3d0_irq
     write /proc/irq/156/smp_affinity_list 2
     write /proc/irq/49/smp_affinity_list 1
+
+# Add logger service for debugging
+on early-init
+    start logger-boot
+
+on property:sys.boot_completed=1
+    stop logger-boot
+
+service logger-boot /system/bin/logcat -b all -D -f /cache/boot_log.txt
+    class main
+    user root
+    group root system
