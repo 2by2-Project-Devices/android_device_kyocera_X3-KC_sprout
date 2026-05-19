@@ -77,7 +77,7 @@ blob_fixups: blob_fixups_user_type = {
         .binary_regex_replace(b'.bt_nv.bin', b'.bt_nv.noo'),
     ('vendor/lib/libwvhidl.so', 'vendor/lib64/libwvhidl.so'): blob_fixup()
         .add_needed('libcrypto_shim.so'),
-    'vendor/lib/libznr.so': blob_fixup()
+    ('vendor/lib/libznr.so', 'vendor/lib/libmmcamera_faceproc.so'): blob_fixup()
         .add_needed('liblog.so')
         .clear_symbol_version('__aeabi_memcpy')
         .clear_symbol_version('__aeabi_memset')
