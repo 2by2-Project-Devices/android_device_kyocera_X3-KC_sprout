@@ -14,6 +14,9 @@ $(call inherit-product, device/kyocera/X3-KC_sprout/device.mk)
 # Inherit some common Lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
+# 2by2 stuff
+CUSTOM_PROCESSOR_INFO := Qualcomm Snapdragon 630
+
 PRODUCT_DEVICE := X3-KC_sprout
 PRODUCT_NAME := lineage_X3_sprout
 PRODUCT_BRAND := KYOCERA
