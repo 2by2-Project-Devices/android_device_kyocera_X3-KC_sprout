@@ -404,7 +404,7 @@ $(call soong_config_set,libinit,vendor_init_lib,//$(LOCAL_PATH):libinit.kyocera_
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    vendor.qti.hardware.vibrator.service
+    android.hardware.vibrator-service.legacy
 
 # WiFi
 PRODUCT_PACKAGES += \
