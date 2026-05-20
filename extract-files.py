@@ -54,7 +54,8 @@ blob_fixups: blob_fixups_user_type = {
     'system_ext/lib64/lib-imscamera.so': blob_fixup()
         .add_needed('libgui_shim.so'),
     'system_ext/lib64/lib-imsvideocodec.so': blob_fixup()
-        .add_needed('libgui_shim.so'),
+        .add_needed('libgui_shim.so')
+        .replace_needed('libqdMetaData.so', 'libqdMetaData.system.so'),
     'system_ext/lib64/libdpmframework.so': blob_fixup()
         .replace_needed('libhidltransport.so', 'libcutils_shim.so'),
     'vendor/bin/hw/android.hardware.drm@1.1-service.widevine': blob_fixup()
