@@ -658,6 +658,10 @@ vendor/lib64/libSecureUILib.so
 vendor/lib64/libtzdrmgenprov.so
 vendor/lib64/libwvhidl.so
 
+# Vibrator
+vendor/etc/init/init.kc.vibrator.rc
+vendor/lib64/hw/vibrator.default.so
+
 # WLAN
 vendor/bin/cnss-daemon
 vendor/etc/wifi/aoa_cldb_falcon.bin
