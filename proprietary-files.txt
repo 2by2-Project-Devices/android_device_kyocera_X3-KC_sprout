@@ -63,9 +63,12 @@ vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.1.so|c75ec590209c7f598ee81d445f
 vendor/lib64/hw/com.dsi.ant@1.0-impl.so|935d0013fa11dff956cfaf876a63266d81f8706a
 
 # Camera
+vendor/lib/hw/camera.sdm660.so
 vendor/lib/libcdsprpc.so
 vendor/lib/libdepthmapwrapper.so
 vendor/lib/libflash_pmic.so
+vendor/lib/libhal_dbg.so
+vendor/lib/libqomx_core.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegdmahw.so
 vendor/lib/libjpegehw.so
@@ -102,6 +105,7 @@ vendor/lib/libmmcamera_hvx_add_constant.so
 vendor/lib/libmmcamera_hvx_grid_sum.so
 vendor/lib/libmmcamera_imglib.so
 vendor/lib/libmmcamera_imglib_faceproc_adspstub.so
+vendor/lib/libmmcamera_interface.so
 vendor/lib/libmmcamera_irs1645.so
 vendor/lib/libmmcamera_ov12a10.so
 vendor/lib/libmmcamera_ov13850.so
@@ -149,6 +153,8 @@ vendor/lib/libmmcamera_tintless_bg_pca_algo.so
 vendor/lib/libmmcamera_tuning.so
 vendor/lib/libmmcamera_tuning_lookup.so
 vendor/lib/libmmjpeg.so
+vendor/lib/libmmjpeg_interface.so
+vendor/lib/libmmlib2d_interface.so
 vendor/lib/libmmqjpeg_codec.so
 vendor/lib/libmmqjpegdma.so
 vendor/lib/libqomx_jpegdec.so
