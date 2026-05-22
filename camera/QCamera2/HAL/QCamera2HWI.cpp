@@ -81,8 +81,6 @@ extern "C" {
 #define CAMERA_INITIAL_MAPPABLE_PREVIEW_BUFFERS 5
 #define CAMERA_MAX_PARAM_APPLY_DELAY 3
 
-#define CAMERA_MSG_META_DATA 0x2000
-
 namespace qcamera {
 
 extern cam_capability_t *gCamCapability[MM_CAMERA_MAX_NUM_SENSORS];
@@ -4827,11 +4825,11 @@ int32_t QCamera2HardwareInterface::configureHDRBracketing()
             tmp.append(",");
     }
 
-    if( tmp.length() > 0 &&
+    if( !tmp.isEmpty() &&
         ( MAX_EXP_BRACKETING_LENGTH > tmp.length() ) ) {
         //Trim last comma
         memset(aeBracket.values, '\0', MAX_EXP_BRACKETING_LENGTH);
-        memcpy(aeBracket.values, tmp.c_str(), tmp.length() - 1);
+        memcpy(aeBracket.values, tmp.string(), tmp.length() - 1);
     }
 
     LOGH("HDR config values %s",
@@ -6625,8 +6623,8 @@ int QCamera2HardwareInterface::dump(int fd)
     dprintf(fd, "\n Camera HAL information Begin \n");
     dprintf(fd, "Camera ID: %d \n", mCameraId);
     dprintf(fd, "StoreMetaDataInFrame: %d \n", mStoreMetaDataInFrame);
-    dprintf(fd, "\n Configuration: %s", mParameters.dump().c_str());
-    dprintf(fd, "\n State Information: %s", m_stateMachine.dump().c_str());
+    dprintf(fd, "\n Configuration: %s", mParameters.dump().string());
+    dprintf(fd, "\n State Information: %s", m_stateMachine.dump().string());
     dprintf(fd, "\n Camera HAL information End \n");
 
     /* send UPDATE_DEBUG_LEVEL to the backend so that they can read the
@@ -10552,17 +10550,17 @@ QCameraExif *QCamera2HardwareInterface::getExifData()
     rc = mParameters.getExifDateTime(dateTime, subSecTime);
     if(rc == NO_ERROR) {
         exif->addEntry(EXIFTAGID_DATE_TIME, EXIF_ASCII,
-                (uint32_t)(dateTime.length() + 1), (void *)dateTime.c_str());
+                (uint32_t)(dateTime.length() + 1), (void *)dateTime.string());
         exif->addEntry(EXIFTAGID_EXIF_DATE_TIME_ORIGINAL, EXIF_ASCII,
-                (uint32_t)(dateTime.length() + 1), (void *)dateTime.c_str());
+                (uint32_t)(dateTime.length() + 1), (void *)dateTime.string());
         exif->addEntry(EXIFTAGID_EXIF_DATE_TIME_DIGITIZED, EXIF_ASCII,
-                (uint32_t)(dateTime.length() + 1), (void *)dateTime.c_str());
+                (uint32_t)(dateTime.length() + 1), (void *)dateTime.string());
         exif->addEntry(EXIFTAGID_SUBSEC_TIME, EXIF_ASCII,
-                (uint32_t)(subSecTime.length() + 1), (void *)subSecTime.c_str());
+                (uint32_t)(subSecTime.length() + 1), (void *)subSecTime.string());
         exif->addEntry(EXIFTAGID_SUBSEC_TIME_ORIGINAL, EXIF_ASCII,
-                (uint32_t)(subSecTime.length() + 1), (void *)subSecTime.c_str());
+                (uint32_t)(subSecTime.length() + 1), (void *)subSecTime.string());
         exif->addEntry(EXIFTAGID_SUBSEC_TIME_DIGITIZED, EXIF_ASCII,
-                (uint32_t)(subSecTime.length() + 1), (void *)subSecTime.c_str());
+                (uint32_t)(subSecTime.length() + 1), (void *)subSecTime.string());
     } else {
         LOGW("getExifDateTime failed");
     }

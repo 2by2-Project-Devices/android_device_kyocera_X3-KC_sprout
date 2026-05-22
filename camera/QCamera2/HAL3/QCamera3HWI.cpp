@@ -137,10 +137,6 @@ namespace qcamera {
 #define UBWC_COMP_RATIO 1.26
 #define PERF_CONFIG_PATH "/vendor/etc/camera/cameraconfig.txt"
 
-#define CTS_WA_HEIGHT_CHECK 3120
-#define CTS_WA_WIDTH_CHECK 4160
-#define CTS_WA_MINFRAMEDURATION 66666666
-
 cam_capability_t *gCamCapability[MM_CAMERA_MAX_NUM_SENSORS];
 const camera_metadata_t *gStaticMetadata[MM_CAMERA_MAX_NUM_SENSORS];
 extern pthread_mutex_t gCamLock;
@@ -601,11 +597,9 @@ QCamera3HardwareInterface::QCamera3HardwareInterface(uint32_t cameraId,
     if (gCamCapability[cameraId]->is_quadracfa_sensor) {
         m_bQuadraCfaSensor = true;
 
-#ifndef TARGET_SDM660
         if (gCamCapability[cameraId]->is_quadracfa_insensor) {
             m_bInSensorQCFA = true;
         }
-#endif
 
         char prop[PROPERTY_VALUE_MAX];
         memset(prop, 0, sizeof(prop));
@@ -2895,9 +2889,7 @@ int QCamera3HardwareInterface::configureStreamsPerfLocked(
                 {
                     padding_info.width_padding = CAM_PAD_TO_512;
                     padding_info.height_padding = CAM_PAD_TO_512;
-#ifndef TARGET_SDM660
                     padding_info.usage = newStream->usage;
-#endif
                     mStreamConfigInfo[index].type[stream_index] = CAM_STREAM_TYPE_CALLBACK;
                     if ((m_bIs4KVideo && !isZsl) || (bSmallJpegSize && !isZsl)) {
                         mStreamConfigInfo[index].postprocess_mask[stream_index] =
@@ -7266,26 +7258,12 @@ int QCamera3HardwareInterface::processCaptureRequest(
                     mStreamConfigInfo[config_index].stream_sizes[i]);
             }
 
-            /* Set Video HDR Mode Using a SetProp */
-            char prop[PROPERTY_VALUE_MAX];
-            memset(prop, 0, sizeof(prop));
-            property_get("persist.vendor.camera.videohdr.enable", prop, "0");
-            bool videoHDR = atoi(prop);
-            if(videoHDR)
-            {
-                rc = setVideoHdrMode(params, (cam_video_hdr_mode_t)videoHDR);
-                if (rc != NO_ERROR) {
-                    LOGE("VideoHDR Failed");
-                }
-            }
-            else {
-                if (l_meta.exists(QCAMERA3_VIDEO_HDR_MODE)) {
-                    cam_video_hdr_mode_t vhdr = (cam_video_hdr_mode_t)
+            if (l_meta.exists(QCAMERA3_VIDEO_HDR_MODE)) {
+                cam_video_hdr_mode_t vhdr = (cam_video_hdr_mode_t)
                         l_meta.find(QCAMERA3_VIDEO_HDR_MODE).data.i32[0];
-                    rc = setVideoHdrMode(params, vhdr);
-                    if (rc != NO_ERROR) {
-                        LOGE("setVideoHDR is failed");
-                    }
+                rc = setVideoHdrMode(params, vhdr);
+                if (rc != NO_ERROR) {
+                    LOGE("setVideoHDR is failed");
                 }
             }
 
@@ -7341,10 +7319,9 @@ int QCamera3HardwareInterface::processCaptureRequest(
 
             // e.g. If we used video HDR in camcorder mode but are not using HDR in picture
             // mode, sensor HDR should be disabled here
-            if (!didSetSensorHdr) {
+            if (!didSetSensorHdr)
                 setSensorHDR(params, false, false);
                 mShouldSetSensorHdr = false;
-            }
 
             //TODO: validate the arguments, HSV scenemode should have only the
             //advertised fps ranges
@@ -11156,7 +11133,7 @@ void QCamera3HardwareInterface::dumpMetadataToFile(tuning_params_t &meta,
                 type,
                 frameNumber);
         filePath.append(buf);
-        int file_fd = open(filePath.c_str(), O_RDWR | O_CREAT, 0777);
+        int file_fd = open(filePath.string(), O_RDWR | O_CREAT, 0777);
         if (file_fd >= 0) {
             ssize_t written_len = 0;
             meta.tuning_data_version = TUNING_DATA_VERSION;
@@ -11640,11 +11617,7 @@ int QCamera3HardwareInterface::initCapabilities(uint32_t cameraId)
     }
 
     if (gCamCapability[cameraId]->is_remosaic_lib_present ||
-#ifdef TARGET_SDM660
-            false) {
-#else
             gCamCapability[cameraId]->is_quadracfa_insensor) {
-#endif
         gCamCapability[cameraId]->is_quadracfa_sensor = TRUE;
     }
 
@@ -12433,14 +12406,6 @@ int QCamera3HardwareInterface::initStaticMetadata(uint32_t cameraId)
                 available_min_durations.add(scalar_formats[j]);
                 available_min_durations.add(gCamCapability[cameraId]->picture_sizes_tbl[i].width);
                 available_min_durations.add(gCamCapability[cameraId]->picture_sizes_tbl[i].height);
-
-                if ((scalar_formats[j] == HAL_PIXEL_FORMAT_YCbCr_420_888) &&
-                    (gCamCapability[cameraId]->picture_sizes_tbl[i].height
-                     == CTS_WA_HEIGHT_CHECK) &&
-                    (gCamCapability[cameraId]->picture_sizes_tbl[i].width == CTS_WA_WIDTH_CHECK)) {
-                    gCamCapability[cameraId]->picture_min_duration[i] = CTS_WA_MINFRAMEDURATION;
-
-                }
                 available_min_durations.add(gCamCapability[cameraId]->picture_min_duration[i]);
             }
             break;
@@ -12779,11 +12744,7 @@ int QCamera3HardwareInterface::initStaticMetadata(uint32_t cameraId)
         available_capabilities.add(ANDROID_REQUEST_AVAILABLE_CAPABILITIES_DEPTH_OUTPUT);
     }
 
-#ifdef TARGET_SDM660
-    if (cameraId > 0 && CAM_SENSOR_YUV != gCamCapability[cameraId]->sensor_type.sens_type) {
-#else
     if (CAM_SENSOR_YUV != gCamCapability[cameraId]->sensor_type.sens_type) {
-#endif
         available_capabilities.add(ANDROID_REQUEST_AVAILABLE_CAPABILITIES_RAW);
     }
 #ifdef USE_HAL_3_5
@@ -15467,32 +15428,18 @@ int QCamera3HardwareInterface::translateToHalMetadata
         }
     }
 
-    /* Set Video HDR Mode Using a SetProp */
-    char prop[PROPERTY_VALUE_MAX];
-    memset(prop, 0, sizeof(prop));
-    property_get("persist.vendor.camera.videohdr.enable", prop, "0");
-    bool videoHDR = atoi(prop);
-    if(videoHDR)
-    {
-        rc = setVideoHdrMode(mParameters, (cam_video_hdr_mode_t)videoHDR);
-        if (rc != NO_ERROR) {
-            LOGE("VideoHDR Failed");
-        }
-    }
-    else {
-        // Video HDR
-        if (frame_settings.exists(QCAMERA3_VIDEO_HDR_MODE)) {
-            LOGE("Video HDR Mode is set");
-            cam_video_hdr_mode_t vhdr = (cam_video_hdr_mode_t)
-                   frame_settings.find(QCAMERA3_VIDEO_HDR_MODE).data.i32[0];
-            int8_t curr_hdr_state = ((mCurrFeatureState & CAM_QCOM_FEATURE_STAGGERED_VIDEO_HDR) != 0);
+    // Video HDR
+    if (frame_settings.exists(QCAMERA3_VIDEO_HDR_MODE)) {
+        cam_video_hdr_mode_t vhdr = (cam_video_hdr_mode_t)
+                frame_settings.find(QCAMERA3_VIDEO_HDR_MODE).data.i32[0];
+        int8_t curr_hdr_state = ((mCurrFeatureState & CAM_QCOM_FEATURE_STAGGERED_VIDEO_HDR) != 0);
 
-            if(vhdr != curr_hdr_state)
-                LOGE("PROFILE_SET_HDR_MODE %d" ,vhdr);
-            rc = setVideoHdrMode(mParameters, vhdr);
-            if (rc != NO_ERROR) {
-                LOGE("setVideoHDR is failed");
-            }
+        if(vhdr != curr_hdr_state)
+           LOGH("PROFILE_SET_HDR_MODE %d" ,vhdr);
+
+        rc = setVideoHdrMode(mParameters, vhdr);
+        if (rc != NO_ERROR) {
+            LOGE("setVideoHDR is failed");
         }
     }
 
@@ -16337,7 +16284,6 @@ int32_t QCamera3HardwareInterface::setVideoHdrMode(
         metadata_buffer_t *hal_metadata, cam_video_hdr_mode_t vhdr)
 {
     if ( (vhdr >= CAM_VIDEO_HDR_MODE_OFF) && (vhdr < CAM_VIDEO_HDR_MODE_MAX)) {
-        LOGH("setVideoHDR Mode %d", vhdr);
         return setSensorHDR(hal_metadata, (vhdr == CAM_VIDEO_HDR_MODE_ON), true);
     }
 
