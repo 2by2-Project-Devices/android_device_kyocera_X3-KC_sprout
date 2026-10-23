@@ -255,12 +255,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vendor.lineage.health-service.default
 
-# Mac address setup
-PRODUCT_PACKAGES += \
-    macaddrsetup
-
-$(call soong_config_set,kyocera_macaddrsetup,wifi_driver,qca_cld3)
-
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
@@ -330,10 +324,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
-
-# SimDetect
-PRODUCT_PACKAGES += \
-    SimDetect
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
